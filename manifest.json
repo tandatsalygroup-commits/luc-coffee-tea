@@ -1,0 +1,23 @@
+{
+  "name": "Lục Coffee & Tea",
+  "short_name": "Lục Coffee",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0b1110",
+  "theme_color": "#0b1110",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/canvahvsaly-bit/anh/main/Logo%20L%E1%BB%A4C%20COFFEE%20%26%20TEA.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/canvahvsaly-bit/anh/main/Logo%20L%E1%BB%A4C%20COFFEE%20%26%20TEA.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
