@@ -66,10 +66,16 @@
     .site-shell { min-height: 100vh; }
 
     /* --------------------------------------------------------
-       SCROLL RIG & STAGE
+       SCROLL RIG & STAGE (Đã sửa Fixed thành Sticky)
        -------------------------------------------------------- */
     .cinema-scroll { position: relative; height: calc(100vh + 3900px); }
-    .stage { position: fixed; top: 0; left: 0; right: 0; height: 100vh; min-height: 620px; overflow: hidden; isolation: isolate; background: #7fb4d4; z-index: 1; }
+    .stage { 
+      position: sticky; /* Đã sửa thành sticky để trôi mượt xuống Menu */
+      top: 0; left: 0; right: 0; 
+      height: 100vh; min-height: 620px; 
+      overflow: hidden; isolation: isolate; 
+      background: #7fb4d4; z-index: 1; 
+    }
     
     .world, .back-stack, .sky-img, .shade, .scene-img, .site-header, 
     .sights-slider, .sights-controls, .hero-title, .intro-copy, .story-panel {
@@ -515,9 +521,8 @@
     .menu-section {
       position: relative;
       z-index: 20; 
-      margin-top: -100vh; 
-      min-height: 100vh;
-      background: transparent;
+      /* Đã xóa margin-top: -100vh; để web không bị đè */
+      background: #0b1110; 
       padding: 120px 24px 100px;
     }
 
@@ -606,7 +611,7 @@
       position: relative;
       z-index: 20;
       padding: 60px 24px;
-      background: transparent; 
+      background: #0b1110; 
     }
     .gallery-container {
       max-width: 1200px;
@@ -656,7 +661,7 @@
     .lightbox {
       display: none;
       position: fixed;
-      z-index: 9999;
+      z-index: 99999;
       left: 0;
       top: 0;
       width: 100%;
@@ -701,6 +706,11 @@
       transform: scale(1.1);
     }
 
+    /* Đảm bảo Bottom Bar ẨN TRÊN MÁY TÍNH */
+    .app-bottom-bar {
+      display: none;
+    }
+
     /* --------------------------------------------------------
        MEDIA QUERIES (TỐI ƯU RIÊNG CHO ĐIỆN THOẠI & TABLET)
        -------------------------------------------------------- */
@@ -721,26 +731,26 @@
     }
 
     @media (max-width: 640px) {
-      /* 1. SỬA HEADER: Gọn gàng, xếp ngang, KHÔNG dùng fixed để tránh đè chữ */
+      /* 1. SỬA HEADER: Gọn gàng, xếp ngang, trôi mượt theo nền */
       .site-header {
-        position: absolute !important; /* Bắt buộc để trượt theo không gian 3D */
+        position: absolute !important; 
         top: 0; left: 0; right: 0;
         display: flex !important;
-        flex-direction: row !important; /* Trả về xếp ngang */
+        flex-direction: row !important; 
         justify-content: space-between;
         align-items: center;
         padding: 15px !important;
-        background: transparent !important; /* Xóa nền đen xì */
+        background: transparent !important; 
         border: none !important;
         z-index: 100;
         gap: 10px !important;
       }
 
-      /* Tối giản Logo: Ẩn chữ đi cho đỡ chật màn hình, chỉ để lại icon */
+      /* Tối giản Logo */
       .site-logo { margin: 0 !important; flex-direction: row !important; }
       .site-logo img { height: 35px !important; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
       .site-logo span { display: none !important; } 
-      .language-switcher { display: none !important; } /* Ẩn nút EN */
+      .language-switcher { display: none !important; } 
 
       /* Menu dạng trượt ngang gọn gàng bên phải */
       .site-nav {
@@ -765,8 +775,8 @@
 
       /* 2. SỬA CHỮ HERO (Tên Quán Màn 1) */
       .hero-title {
-        top: 18vh !important; /* Đẩy xuống tránh Header */
-        font-size: 2rem !important; /* Thu nhỏ chữ */
+        top: 18vh !important; 
+        font-size: 2rem !important; 
         width: max-content !important;
         max-width: 90vw !important;
         padding: 10px 20px !important;
@@ -774,30 +784,30 @@
 
       /* 3. SỬA CÁC NÚT ĐỊA CHỈ (Màn 1) */
       .intro-copy { 
-        bottom: 90px !important; /* Nâng lên tránh Bottom Bar */
+        bottom: 90px !important; 
         width: 92vw !important; 
       }
       .intro-copy p { font-size: 0.95rem !important; margin-bottom: 12px !important; }
       .hero-tags { 
-        flex-direction: column !important; /* Chuyển nút địa chỉ xếp dọc */
+        flex-direction: column !important; 
         gap: 8px !important; 
         margin-top: 10px !important;
       }
       .hero-tags a { 
-        width: 100% !important; /* Kéo dài nút tràn màn hình */
+        width: 100% !important; 
         font-size: 12px !important; 
         padding: 10px !important; 
         min-height: auto !important; 
       }
 
-      /* 4. SỬA CHỮ BỊ ĐÈ LÊN NHAU (Hình số 2) */
+      /* 4. SỬA CHỮ BỊ ĐÈ LÊN NHAU */
       .story-panel { 
-        top: 48% !important; /* Căn chuẩn giữa màn hình */
+        top: 48% !important; 
         width: 92vw !important; 
       }
       .story-panel-bazaar { top: 40% !important; } 
       .story-panel h2 { 
-        font-size: 2rem !important; /* Giảm size chữ khổng lồ */
+        font-size: 2rem !important; 
         line-height: 1.2 !important; 
         margin-bottom: 10px !important;
       }
@@ -809,7 +819,7 @@
       .facts { 
         gap: 15px !important; 
         margin-top: 20px !important; 
-        grid-template-columns: 1fr !important; /* Đưa năm thành lập xếp dọc */
+        grid-template-columns: 1fr !important; 
       }
       .facts dt { font-size: 1.8rem !important; }
       .facts dd { margin-top: 5px !important; }
@@ -818,7 +828,7 @@
       .sights-slider { padding: 0; }
       .sights-track { gap: 12px; transform: translate3d(calc(var(--sights-shift) - 18vw), 0, 0); }
       .sight-card { flex-basis: min(85vw, 320px); height: 200px; padding: 20px; border-radius: 20px; }
-      .sights-controls { top: calc(var(--sights-screen-top) + 216px); left: 50%; transform: translateX(-50%); } /* Ra giữa màn hình */
+      .sights-controls { top: calc(var(--sights-screen-top) + 216px); left: 50%; transform: translateX(-50%); } 
       .sight-card h3 { max-width: 80%; font-size: 20px; }
       .sight-card p { max-width: 100%; margin-top: 8px; font-size: 13px; }
       .sight-kicker { margin-bottom: 30px; }
@@ -827,7 +837,9 @@
       /* 6. BỐ CỤC MENU ĐỒ UỐNG BÊN DƯỚI */
       .menu-split-container { flex-direction: column; } 
       .menu-left-image { position: relative; top: 0; width: 100%; margin-bottom: 20px; }
-      .menu-section { padding: 40px 16px; margin-top: -100dvh; }
+      
+      /* Xóa margin-top âm để luồng cuộn bình thường */
+      .menu-section { padding: 40px 16px; margin-top: 0; }
       .menu-right-details { padding: 20px 15px; }
       .menu-heading { font-size: 2rem; text-align: center; }
       
@@ -841,17 +853,18 @@
       .gallery-heading { font-size: 1.8rem; margin-bottom: 20px; padding: 12px; }
       .gallery-section { padding: 10px 16px 90px; }
 
-      /* 8. THANH BOTTOM BAR CỐ ĐỊNH DƯỚI CÙNG (GỬI NGUYÊN) */
+      /* 8. THANH BOTTOM BAR CỐ ĐỊNH DƯỚI CÙNG (HIỂN THỊ TRÊN MOBILE) */
       .app-bottom-bar {
+        display: flex;
         position: fixed;
         bottom: 0; left: 0; width: 100%;
         background-color: rgba(11, 17, 16, 0.95);
         backdrop-filter: blur(10px);
         border-top: 1px solid rgba(255, 215, 0, 0.2);
-        display: flex; justify-content: center; align-items: center;
+        justify-content: center; align-items: center;
         padding: 12px 15px;
         z-index: 9999;
-        padding-bottom: env(safe-area-inset-bottom, 15px); /* Tối ưu cho tai thỏ iPhone */
+        padding-bottom: env(safe-area-inset-bottom, 15px); 
       }
       .btn-bottom {
         flex: 1; text-align: center; padding: 12px 0; border-radius: 12px;
@@ -883,10 +896,10 @@
               <span>Lục Coffee & Tea</span>
             </a>
             <nav class="site-nav" aria-label="Main menu">
+              <!-- ĐÃ SỬA CÁC ĐƯỜNG LINK CHO CHUẨN XÁC -->
               <a href="#cinema">Mở Đầu</a>
-              <a href="#bridge">Câu Chuyện</a>
-              <a href="#bazaar">Đặc Tính</a>
-              <a href="#routes">Thẻ Nhớ</a>
+              <a href="#menu">Thực Đơn</a>
+              <a href="#gallery">Không Gian</a>
             </nav>
             <button class="language-switcher" aria-label="Change language">
               <span>EN</span>
@@ -1016,7 +1029,7 @@
 
         <section class="story-panel story-panel-bazaar" aria-label="Old town details">
           <h2>LUC COFFEE & TEA</h2>
-          <p>Hơn cả một tách cà phê, Lục mang đến một hành trình khám phá vị giác. Ẩn mình giữa Sài Gòn tấp nấp, chúng tôi kể câu chuyện về câu chuyện và sự tinh tế trong từng thức uống.</p>
+          <p>Hơn cả một tách cà phê, Lục mang đến một hành trình khám phá vị giác. Ẩn mình giữa Sài Gòn tấp nấp, chúng tôi kể câu chuyện về sự tinh tế trong từng thức uống.</p>
           
           <div class="hero-tags">
             <span>Cà Phê</span>
@@ -1434,67 +1447,4 @@
 
     // --------------------------------------------------------
     // LISTENERS & BOOTSTRAP
-    // --------------------------------------------------------
-    window.addEventListener('scroll', requestTick, { passive: true });
-    
-    window.addEventListener('resize', () => {
-      updateSightSlider();
-      requestTick();
-    });
-    
-    window.addEventListener('pointermove', (e) => {
-      targetMouseX = (e.clientX / window.innerWidth) - 0.5;
-      targetMouseY = (e.clientY / window.innerHeight) - 0.5;
-      requestTick();
-    }, { passive: true });
-
-    btnPrev.addEventListener('click', () => moveSightSlider(-1));
-    btnNext.addEventListener('click', () => moveSightSlider(1));
-
-    // Boot
-    setupSightSlider();
-    requestTick();
-
-    // --------------------------------------------------------
-    // LIGHTBOX (PHÓNG TO ẢNH) LOGIC
-    // --------------------------------------------------------
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const zoomableImages = document.querySelectorAll('.gallery-img, .menu-left-image img');
-
-    zoomableImages.forEach(img => {
-      img.addEventListener('click', () => {
-        lightbox.classList.add('active');
-        lightboxImg.src = img.src;
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target !== lightboxImg) {
-        lightbox.classList.remove('active');
-      }
-    });
-    
-  </script>
-
-  <!-- Kích hoạt Service Worker cho PWA -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(registration => {
-            console.log('ServiceWorker đăng ký thành công:', registration.scope);
-          })
-          .catch(error => {
-            console.log('ServiceWorker đăng ký thất bại:', error);
-          });
-      });
-    }
-  </script>
-</body>
-</html>
+    // --------------------------------
