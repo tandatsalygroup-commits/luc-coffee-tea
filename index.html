@@ -85,18 +85,16 @@
       color: rgba(253, 241, 225, 0.86);
       pointer-events: auto;
     }
-    
-    /* CSS CHO LOGO ĐÃ ĐƯỢC CHỈNH SỬA CHUẨN XÁC */
     .site-logo {
       justify-self: start;
       display: flex;
-      flex-direction: column; /* Xếp logo và chữ theo chiều dọc */
-      align-items: center; /* Căn giữa */
+      flex-direction: column;
+      align-items: center;
       text-decoration: none;
-      gap: 6px; /* Khoảng cách giữa logo và chữ */
+      gap: 6px;
     }
     .site-logo img {
-      height: 85px; /* TĂNG KÍCH THƯỚC LOGO TO HƠN */
+      height: 85px; 
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
@@ -106,7 +104,7 @@
       transform: scale(1.08);
     }
     .site-logo span {
-      color: #ffffff; /* CHỮ MÀU TRẮNG */
+      color: #ffffff;
       font-family: 'Ogg Medium', serif;
       font-size: 16px;
       font-weight: 500;
@@ -403,7 +401,7 @@
       transform: translate3d(-50%, var(--intro-copy-y), 0);
       opacity: var(--intro-copy-opacity);
       will-change: transform, opacity;
-      pointer-events: auto; /* Cho phép bấm link */
+      pointer-events: auto; 
     }
     .intro-copy p {
       margin: 0 auto;
@@ -510,7 +508,7 @@
     .menu-section {
       position: relative;
       z-index: 20; 
-      margin-top: -100vh; /* Trượt đè lên nền 3D */
+      margin-top: -100vh; 
       min-height: 100vh;
       background: transparent;
       padding: 120px 24px 100px;
@@ -600,7 +598,7 @@
     .gallery-section {
       position: relative;
       z-index: 20;
-      padding: 60px 24px 120px;
+      padding: 60px 24px;
       background: transparent; 
     }
     .gallery-container {
@@ -624,6 +622,14 @@
       grid-template-columns: repeat(2, 1fr); 
       gap: 40px; 
     }
+    /* Grid riêng cho phần Không gian quán (3 cột) */
+    .corners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 40px; 
+      margin-bottom: 60px;
+    }
+
     .gallery-img {
       width: 100%;
       height: auto;
@@ -705,6 +711,7 @@
       .facts { gap: 34px; margin-top: 44px; }
       .facts dt { font-size: 3.2rem; }
       .sight-card { flex-basis: clamp(320px, 40vw, 390px); min-height: 178px; }
+      .corners-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 640px) {
@@ -736,13 +743,13 @@
       .sight-kicker { margin-bottom: 56px; }
       .sight-pin { top: 24px; right: 24px; width: 57.6px; height: 57.6px; }
       
-      .site-logo img { height: 60px; } /* Giữ logo gọn trên mobile */
+      .site-logo img { height: 60px; } 
       
       .menu-split-container { flex-direction: column; } 
       .menu-left-image { position: relative; top: 0; width: 100%; margin-bottom: 30px; }
       .menu-section { padding: 80px 16px 60px; }
       .menu-right-details { padding: 24px; }
-      .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+      .gallery-grid, .corners-grid { grid-template-columns: 1fr; gap: 20px; }
       .gallery-heading { font-size: 2.2rem; margin-bottom: 30px; }
       .gallery-section { padding: 40px 16px 80px; }
     }
@@ -764,12 +771,10 @@
           <img class="scene-img sky-img" src="https://raft-blast-61784561.figma.site/_assets/v11/16b5007d9c93971e26ffe4e0e3e37946f6bd538c.png" alt="" />
           
           <header class="site-header" aria-label="Primary navigation">
-            <!-- ĐÃ FIX: MÃ HTML CHUẨN XÁC CỦA LOGO VÀ CHỮ -->
             <a href="#cinema" class="site-logo">
               <img src="https://raw.githubusercontent.com/canvahvsaly-bit/anh/main/Logo%20L%E1%BB%A4C%20COFFEE%20%26%20TEA.png" alt="Logo Lục Coffee & Tea">
               <span>Lục Coffee & Tea</span>
             </a>
-            
             <nav class="site-nav" aria-label="Main menu">
               <a href="#cinema">Mở Đầu</a>
               <a href="#bridge">Câu Chuyện</a>
@@ -883,7 +888,7 @@
           <div class="hero-tags" aria-label="Mostar highlights">
             <a href="https://share.google/ZNz8FmR1JEY7V74sp" target="_blank" rel="noopener noreferrer">40 TRUONG SA, BINH THANH</a>
             <a href="https://share.google/9RimPcCQyoCJFPQfO" target="_blank" rel="noopener noreferrer">69 TRAN HUY LIEU, PHU NHUAN</a>
-            <a href="https://share.google/JGQwfyuSHRC7s012H" target="_blank" rel="noopener noreferrer">489 LE QUANG DINH, GO VAP</a>
+            <a href="https://share.google/Ry5b31dRta0upJ8DP" target="_blank" rel="noopener noreferrer">489 LE QUANG DINH, GO VAP</a>
           </div>
         </section>
 
@@ -1032,27 +1037,31 @@
     <!-- PHẦN BỘ SƯU TẬP ẢNH (GALLERY) -->
     <section class="gallery-section" id="gallery">
       <div class="gallery-container">
-        <h2 class="gallery-heading">Không Gian & Thức Uống</h2>
+        
+        <h2 class="gallery-heading">Thức Uống</h2>
         <div class="gallery-grid">
-          <!-- Hàng 1 -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/1.png?raw=true" alt="Lục Coffee & Tea 1" class="gallery-img">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/2.png?raw=true" alt="Lục Coffee & Tea 2" class="gallery-img">
-          
-          <!-- Hàng 2 -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/3.png?raw=true" alt="Lục Coffee & Tea 3" class="gallery-img">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/4.png?raw=true" alt="Lục Coffee & Tea 4" class="gallery-img">
-          
-          <!-- Hàng 3 -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/5.png?raw=true" alt="Lục Coffee & Tea 5" class="gallery-img">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/6.png?raw=true" alt="Lục Coffee & Tea 6" class="gallery-img">
-          
-          <!-- Hàng 4 -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/7.png?raw=true" alt="Lục Coffee & Tea 7" class="gallery-img">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/8.png?raw=true" alt="Lục Coffee & Tea 8" class="gallery-img">
-          
-          <!-- Hàng 5 (Ảnh lẻ cuối cùng) -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/9.png?raw=true" alt="Lục Coffee & Tea 9" class="gallery-img">
         </div>
+
+        <!-- PHẦN KHÔNG GIAN QUÁN MỚI THÊM -->
+        <h2 class="gallery-heading" style="margin-top: 100px;">Không Gian Quán</h2>
+        <div class="corners-grid">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/b.png?raw=true" alt="Góc quán 1" class="gallery-img">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/c.png?raw=true" alt="Góc quán 2" class="gallery-img">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/n.png?raw=true" alt="Góc quán 3" class="gallery-img">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/v.png?raw=true" alt="Góc quán 4" class="gallery-img">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/x.png?raw=true" alt="Góc quán 5" class="gallery-img">
+          <img src="https://github.com/canvahvsaly-bit/anh/blob/main/z.png?raw=true" alt="Góc quán 6" class="gallery-img">
+        </div>
+
       </div>
     </section>
 
