@@ -622,7 +622,6 @@
       grid-template-columns: repeat(2, 1fr); 
       gap: 40px; 
     }
-    /* Grid riêng cho phần Không gian quán (3 cột) */
     .corners-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr); 
@@ -696,7 +695,7 @@
     }
 
     /* --------------------------------------------------------
-       MEDIA QUERIES
+       MEDIA QUERIES (TỐI ƯU RIÊNG CHO ĐIỆN THOẠI & TABLET)
        -------------------------------------------------------- */
     @media (max-width: 1500px) {
       .hero-title { font-size: 4.5rem; } 
@@ -715,43 +714,62 @@
     }
 
     @media (max-width: 640px) {
-      .stage { min-height: 640px; }
-      .site-header { grid-template-columns: 1fr auto; gap: 18px; padding: 24px; }
+      .stage { min-height: 500px; } /* Giảm chiều cao tối thiểu để vừa vặn màn hình */
+      .site-header { grid-template-columns: 1fr auto; gap: 15px; padding: 16px; }
       .site-nav {
         grid-column: 1 / -1; grid-row: 2; justify-content: flex-start;
-        gap: 18px; overflow-x: auto; scrollbar-width: none;
+        gap: 16px; overflow-x: auto; scrollbar-width: none;
       }
       .site-nav::-webkit-scrollbar { display: none; }
-      .hero-title { top: 16vh; font-size: 2.2rem; } 
+      
+      /* Đẩy tiêu đề lên cao, thu nhỏ padding để không bị thẻ ảnh đè vào */
+      .hero-title { top: 8vh; font-size: 1.7rem; padding: 12px 20px; width: 90vw; } 
+      
       .bridge-img { bottom: 2vh; width: 190vw; }
       .frame-two-img { width: 176vw; }
-      .intro-copy { bottom: 42px; }
-      .intro-copy p, .story-panel p { font-size: 1rem; }
-      .hero-tags { gap: 8px; }
-      .hero-tags span, .hero-tags a { min-height: 38px; padding: 0 16px; font-size: 0.88rem; }
-      .story-panel { top: 42%; }
-      .story-panel-bazaar { top: 26%; }
-      .story-panel h2 { font-size: 2.45rem; }
+      
+      /* Ép phần nút địa chỉ GG Maps sát xuống dưới, thu nhỏ chữ */
+      .intro-copy { bottom: 15px; width: 95vw; }
+      .intro-copy p, .story-panel p { font-size: 0.95rem; }
+      .hero-tags { gap: 6px; margin-top: 15px; }
+      .hero-tags span, .hero-tags a { 
+        min-height: 32px; padding: 6px 12px; 
+        font-size: 0.75rem; text-align: center; line-height: 1.2; 
+      }
+      
+      .story-panel { top: 45%; }
+      .story-panel-bazaar { top: 25%; }
+      .story-panel h2 { font-size: 2.2rem; }
       .facts { gap: 18px; margin-top: 34px; }
-      .facts dt { font-size: 2.5rem; }
+      .facts dt { font-size: 2.2rem; }
+      
+      /* Thu nhỏ các thẻ trượt 3D */
       .sights-slider { padding: 0; }
       .sights-track { gap: 12px; transform: translate3d(calc(var(--sights-shift) - 18vw), 0, 0); }
-      .sight-card { flex-basis: min(82vw, 330px); height: 220px; padding: 24px; border-radius: 24px; }
-      .sights-controls { top: calc(var(--sights-screen-top) + 236px); }
-      .sight-card h3 { max-width: 78%; }
-      .sight-card p { max-width: 100%; margin-top: 10px; }
-      .sight-kicker { margin-bottom: 56px; }
-      .sight-pin { top: 24px; right: 24px; width: 57.6px; height: 57.6px; }
+      .sight-card { flex-basis: min(85vw, 320px); height: 200px; padding: 20px; border-radius: 20px; }
+      .sights-controls { top: calc(var(--sights-screen-top) + 216px); left: 20px; }
+      .sight-card h3 { max-width: 80%; font-size: 20px; }
+      .sight-card p { max-width: 100%; margin-top: 8px; font-size: 14px; }
+      .sight-kicker { margin-bottom: 40px; }
+      .sight-pin { top: 20px; right: 20px; width: 45px; height: 45px; }
       
-      .site-logo img { height: 60px; } 
+      /* Làm gọn Logo ở góc */
+      .site-logo img { height: 45px; } 
+      .site-logo span { font-size: 14px; }
       
+      /* Ngăn chặn chữ Tên món và Giá tiền đè nhau */
+      .item-info { gap: 10px; }
+      .item-name { line-height: 1.3; }
+      .item-price { white-space: nowrap; font-size: 1rem; }
+      
+      /* Cấu hình lại Menu và Bộ sưu tập ảnh */
       .menu-split-container { flex-direction: column; } 
-      .menu-left-image { position: relative; top: 0; width: 100%; margin-bottom: 30px; }
-      .menu-section { padding: 80px 16px 60px; }
-      .menu-right-details { padding: 24px; }
-      .gallery-grid, .corners-grid { grid-template-columns: 1fr; gap: 20px; }
-      .gallery-heading { font-size: 2.2rem; margin-bottom: 30px; }
-      .gallery-section { padding: 40px 16px 80px; }
+      .menu-left-image { position: relative; top: 0; width: 100%; margin-bottom: 20px; }
+      .menu-section { padding: 60px 16px 40px; }
+      .menu-right-details { padding: 20px; }
+      .gallery-grid, .corners-grid { grid-template-columns: 1fr; gap: 15px; margin-bottom: 40px; }
+      .gallery-heading { font-size: 2rem; margin-bottom: 20px; padding: 15px; }
+      .gallery-section { padding: 30px 16px 60px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
