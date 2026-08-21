@@ -66,24 +66,25 @@
     .site-shell { min-height: 100vh; position: relative; }
 
     /* --------------------------------------------------------
-       SCROLL RIG & STAGE (CỐ ĐỊNH NỀN SÔNG NƯỚC)
+       SCROLL RIG & STAGE 
+       (SỬA LẠI: GHIM CHẶT FIXED TRÊN MỌI THIẾT BỊ ĐỂ HIỆN NỀN SÔNG)
        -------------------------------------------------------- */
     .cinema-scroll { 
       position: relative; 
       z-index: 1;
-      height: 3800px; /* Độ dài cuộn cho hiệu ứng 3D */
+      height: calc(100vh + 3900px); 
     }
 
     .stage { 
-      position: fixed; /* Ghi chặt làm Background vĩnh viễn */
-      top: 0; left: 0; right: 0; 
+      position: fixed; /* Ghim chặt nền sông nước */
+      top: 0; left: 0; right: 0; bottom: 0;
       height: 100vh; 
       min-height: 620px; 
       overflow: hidden; 
       isolation: isolate; 
       background: #7fb4d4; 
-      z-index: 0; /* Cho xuống lớp dưới cùng */
-      transform: translateZ(0); /* Kích hoạt GPU cho Mobile mượt hơn */
+      z-index: 0; /* Đẩy xuống dưới cùng làm nền */
+      transform: translateZ(0); 
     }
     
     .world, .back-stack, .sky-img, .shade, .scene-img, .site-header, 
@@ -407,13 +408,13 @@
     }
 
     /* --------------------------------------------------------
-       MENU SECTION & NỀN TRONG SUỐT CHO THẤY SÔNG
+       MENU SECTION & NỀN TRONG SUỐT CHO THẤY SÔNG (MÁY TÍNH)
        -------------------------------------------------------- */
     .menu-section {
       position: relative;
       z-index: 20; 
-      /* Nền Gradient mờ ảo: Ở trên trong suốt để lộ dòng sông, càng xuống dưới càng tối để dễ đọc chữ */
-      background: linear-gradient(to bottom, rgba(11, 17, 16, 0.2) 0%, rgba(11, 17, 16, 0.85) 15%, rgba(11, 17, 16, 0.95) 100%);
+      /* Gradient mờ dần từ trên xuống để lộ dòng sông */
+      background: linear-gradient(to bottom, rgba(11, 17, 16, 0) 0%, rgba(11, 17, 16, 0.6) 20%, rgba(11, 17, 16, 0.85) 100%);
       padding: 120px 24px 100px;
     }
 
@@ -431,7 +432,8 @@
 
     .menu-right-details {
       flex: 1; padding: 50px;
-      background: rgba(11, 17, 16, 0.7); /* Kính mờ đục */
+      /* Kính mờ đục để dễ đọc chữ nhưng vẫn nhìn thấy mờ mờ đằng sau */
+      background: rgba(11, 17, 16, 0.7); 
       backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
       border-radius: 24px; border: 1px solid rgba(253, 241, 225, 0.15);
       box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -463,13 +465,13 @@
     }
 
     /* --------------------------------------------------------
-       GALLERY SECTION 
+       GALLERY SECTION (MÁY TÍNH)
        -------------------------------------------------------- */
     .gallery-section {
       position: relative;
       z-index: 20;
       padding: 60px 24px;
-      background: rgba(11, 17, 16, 0.95); /* Tối dần xuống dưới */
+      background: rgba(11, 17, 16, 0.85); /* Nền bán trong suốt để thấy một phần dòng sông */
     }
     .gallery-container { max-width: 1200px; margin: 0 auto; }
     .gallery-heading {
@@ -489,7 +491,7 @@
     .gallery-img:hover { transform: translateY(-8px) scale(1.02); }
 
     /* --------------------------------------------------------
-       LIGHTBOX (PHÓNG TO ẢNH)
+       LIGHTBOX (PHÓNG TO ẢNH TRÀN MÀN HÌNH)
        -------------------------------------------------------- */
     .lightbox {
       display: none; position: fixed; z-index: 99999;
@@ -538,7 +540,7 @@
       /* Bắt buộc gắn cứng nền cho Mobile không giật */
       .stage {
         position: fixed !important;
-        height: 100dvh !important; /* Tránh layout shift do thanh Safari */
+        height: 100dvh !important;
       }
 
       /* Tối ưu Header Mobile */
@@ -618,7 +620,7 @@
 
       .gallery-grid, .corners-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
       .gallery-heading { font-size: 1.8rem; margin-bottom: 20px; padding: 12px; }
-      .gallery-section { padding: 10px 16px 90px; }
+      .gallery-section { padding: 10px 16px 90px; background: rgba(11, 17, 16, 0.95); }
 
       /* Bottom Bar Mobile */
       .app-bottom-bar {
@@ -658,7 +660,7 @@
 <body>
 
   <main class="site-shell">
-    <!-- Khối 3900px chứa hiệu ứng Scroll Điện ảnh -->
+    <!-- KHỐI CHỨA HIỆU ỨNG 3D -->
     <section class="cinema-scroll" id="cinema" aria-label="Mostar cinematic scroll story">
       <div class="stage">
         
@@ -815,13 +817,12 @@
       </div>
     </section>
 
-    <!-- PHẦN MENU SPLIT-SCREEN (NẰM DƯỚI LỚP 3D) -->
+    <!-- PHẦN MENU SPLIT-SCREEN NẰM TRƯỢT LÊN TRÊN LỚP 3D -->
     <section class="menu-section" id="menu">
       <div class="menu-split-container">
         
         <!-- Cột Trái: Ảnh Menu -->
         <div class="menu-left-image">
-          <!-- BỔ SUNG LAZY LOAD CHO TẤT CẢ ẢNH BÊN DƯỚI -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/(B%E1%BA%A3ng%20Tr%C6%B0%E1%BB%9Bc)%20Menu%20Tr%C6%B0%E1%BB%9Dng%20Sa%20Th%C3%A1ng%207.png?raw=true" alt="Bảng Menu Lục Coffee & Tea" loading="lazy">
         </div>
 
@@ -829,7 +830,6 @@
         <div class="menu-right-details">
           <h2 class="menu-heading">Chi Tiết Thực Đơn</h2>
 
-          <!-- Danh mục: BEST SELLER -->
           <div class="menu-category">
             <h3 class="category-title">Best Seller</h3>
             <ul class="menu-list">
@@ -842,7 +842,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: MÓN MỚI -->
           <div class="menu-category">
             <h3 class="category-title">Món Mới</h3>
             <ul class="menu-list">
@@ -852,7 +851,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: TRÀ TRÁI CÂY -->
           <div class="menu-category">
             <h3 class="category-title">Trà Trái Cây</h3>
             <ul class="menu-list">
@@ -868,7 +866,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: TRÀ SỮA ĐẬM VỊ -->
           <div class="menu-category">
             <h3 class="category-title">Trà Sữa Đậm Vị</h3>
             <ul class="menu-list">
@@ -885,7 +882,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: CÀ PHÊ -->
           <div class="menu-category">
             <h3 class="category-title">Cà Phê</h3>
             <ul class="menu-list">
@@ -901,7 +897,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: MATCHA "REAL" -->
           <div class="menu-category">
             <h3 class="category-title">Matcha "Real"</h3>
             <ul class="menu-list">
@@ -912,7 +907,6 @@
             </ul>
           </div>
 
-          <!-- Danh mục: ĐÁ XAY & SỮA CHUA -->
           <div class="menu-category">
             <h3 class="category-title">Đá Xay & Sữa Chua</h3>
             <ul class="menu-list">
@@ -935,7 +929,6 @@
         
         <h2 class="gallery-heading">Thức Uống</h2>
         <div class="gallery-grid">
-          <!-- BỔ SUNG LAZY LOAD CHO TẤT CẢ ẢNH BÊN DƯỚI -->
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/1.png?raw=true" alt="Lục Coffee & Tea 1" class="gallery-img" loading="lazy">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/2.png?raw=true" alt="Lục Coffee & Tea 2" class="gallery-img" loading="lazy">
           <img src="https://github.com/canvahvsaly-bit/anh/blob/main/3.png?raw=true" alt="Lục Coffee & Tea 3" class="gallery-img" loading="lazy">
@@ -985,14 +978,12 @@
     const root = document.documentElement;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     
-    // Slider elements
     const sightsTrack = document.querySelector('.sights-track');
     const sightsControls = document.querySelector('.sights-controls');
     const btnPrev = document.querySelector('.sight-prev');
     const btnNext = document.querySelector('.sight-next');
     let originalCards = Array.from(document.querySelectorAll('.sight-card'));
     
-    // State
     let targetMouseX = 0, targetMouseY = 0;
     let mouseX = 0, mouseY = 0;
     let targetScroll = 0, smoothScroll = 0;
@@ -1003,7 +994,6 @@
     let originalSightCount = originalCards.length;
     let activeSight = originalSightCount;
 
-    // Helpers
     const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
     const smoothstep = (e0, e1, v) => {
       const x = clamp((v - e0) / (e1 - e0));
@@ -1020,7 +1010,6 @@
       return clamp(-rect.top, 0, cinemaScroll.offsetHeight - window.innerHeight);
     };
 
-    // Update Loop
     function update() {
       targetScroll = getScrollDistance();
       
@@ -1046,7 +1035,6 @@
       const sightsEnterRaw = smoothstep(2760, 3560, smoothScroll);
       const sightsEnter = Math.pow(sightsEnterRaw, 1.55);
       
-      // Làm mờ các thẻ khi cuộn tới Menu
       const menuFadeOut = smoothstep(3600, 3900, smoothScroll);
       const sightsControlsEnter = smoothstep(3360, 3660, smoothScroll) * (1 - menuFadeOut);
       
@@ -1064,7 +1052,6 @@
       const sightsScreenTop = Math.min(220, Math.max(112, window.innerHeight * 0.19)) - 50;
       const sightsParentTop = window.innerHeight - (window.innerHeight - sightsScreenTop) / backScale;
 
-      // Exact Variable Writes
       const mx = reduceMotion.matches ? 0 : mouseX;
       const my = reduceMotion.matches ? 0 : mouseY;
       root.style.setProperty('--mx', mx.toFixed(4));
@@ -1126,7 +1113,6 @@
       root.style.setProperty('--sights-top', `${sightsParentTop}px`);
       root.style.setProperty('--sights-screen-top', `${sightsScreenTop}px`);
       
-      // Thực thi độ mờ
       root.style.setProperty('--sights-opacity', sightsEnter.toString());
       root.style.setProperty('--sights-controls-opacity', sightsControlsEnter.toString());
       root.style.setProperty('--sights-fade', (1 - menuFadeOut).toString());
@@ -1147,9 +1133,6 @@
       }
     }
 
-    // --------------------------------------------------------
-    // INFINITE SLIDER LOGIC
-    // --------------------------------------------------------
     function setupSightSlider() {
       sightsTrack.replaceChildren();
       for (let setIndex = 0; setIndex <= 2; setIndex++) {
@@ -1159,7 +1142,6 @@
           sightsTrack.appendChild(clone);
         });
       }
-      
       sightCards = Array.from(sightsTrack.querySelectorAll('.sight-card'));
       activeSight = originalSightCount; 
       
@@ -1167,12 +1149,10 @@
         card.addEventListener('click', () => selectSightCard(card));
         card.addEventListener('keydown', (e) => {
           if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            selectSightCard(card);
+            e.preventDefault(); selectSightCard(card);
           }
         });
       });
-      
       sightsTrack.addEventListener('transitionend', normalizeSightSlider);
       updateSightSlider();
     }
@@ -1181,71 +1161,38 @@
       const cardWidth = sightCards[0].offsetWidth;
       const gap = parseFloat(getComputedStyle(sightsTrack).columnGap || "0");
       root.style.setProperty('--sights-shift', `${-(cardWidth + gap) * activeSight}px`);
-      
       sightCards.forEach((card, i) => {
         card.classList.toggle('is-active', i === activeSight);
       });
     }
 
-    function moveSightSlider(dir) {
-      activeSight += dir;
-      updateSightSlider();
-    }
-
+    function moveSightSlider(dir) { activeSight += dir; updateSightSlider(); }
     function selectSightCard(card) {
       const idx = Number(card.dataset.sightIndex);
-      if (Number.isFinite(idx)) {
-        activeSight = idx;
-        updateSightSlider();
-      }
+      if (Number.isFinite(idx)) { activeSight = idx; updateSightSlider(); }
     }
-
     function jumpSightSlider(i) {
-      sightsTrack.classList.add('is-jumping');
-      activeSight = i;
-      updateSightSlider();
-      
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          sightsTrack.classList.remove('is-jumping');
-        });
-      });
+      sightsTrack.classList.add('is-jumping'); activeSight = i; updateSightSlider();
+      requestAnimationFrame(() => { requestAnimationFrame(() => { sightsTrack.classList.remove('is-jumping'); }); });
     }
-
     function normalizeSightSlider() {
-      if (activeSight >= originalSightCount * 2) {
-        jumpSightSlider(activeSight - originalSightCount);
-      } else if (activeSight < originalSightCount) {
-        jumpSightSlider(activeSight + originalSightCount);
-      }
+      if (activeSight >= originalSightCount * 2) { jumpSightSlider(activeSight - originalSightCount); } 
+      else if (activeSight < originalSightCount) { jumpSightSlider(activeSight + originalSightCount); }
     }
 
-    // --------------------------------------------------------
-    // LISTENERS & BOOTSTRAP
-    // --------------------------------------------------------
     window.addEventListener('scroll', requestTick, { passive: true });
-    
-    window.addEventListener('resize', () => {
-      updateSightSlider();
-      requestTick();
-    });
-    
+    window.addEventListener('resize', () => { updateSightSlider(); requestTick(); });
     window.addEventListener('pointermove', (e) => {
       targetMouseX = (e.clientX / window.innerWidth) - 0.5;
       targetMouseY = (e.clientY / window.innerHeight) - 0.5;
       requestTick();
     }, { passive: true });
-
     btnPrev.addEventListener('click', () => moveSightSlider(-1));
     btnNext.addEventListener('click', () => moveSightSlider(1));
 
-    // Boot
     setupSightSlider();
     requestTick();
 
-    // --------------------------------------------------------
-    // LIGHTBOX (PHÓNG TO ẢNH) LOGIC
-    // --------------------------------------------------------
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
@@ -1253,34 +1200,21 @@
 
     zoomableImages.forEach(img => {
       img.addEventListener('click', () => {
-        lightbox.classList.add('active');
-        lightboxImg.src = img.src;
+        lightbox.classList.add('active'); lightboxImg.src = img.src;
       });
     });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-
+    closeBtn.addEventListener('click', () => { lightbox.classList.remove('active'); });
     lightbox.addEventListener('click', (e) => {
-      if (e.target !== lightboxImg) {
-        lightbox.classList.remove('active');
-      }
+      if (e.target !== lightboxImg) { lightbox.classList.remove('active'); }
     });
-    
   </script>
 
-  <!-- Kích hoạt Service Worker cho PWA -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
-          .then(registration => {
-            console.log('ServiceWorker đăng ký thành công:', registration.scope);
-          })
-          .catch(error => {
-            console.log('ServiceWorker đăng ký thất bại:', error);
-          });
+          .then(registration => { console.log('ServiceWorker đăng ký thành công:', registration.scope); })
+          .catch(error => { console.log('ServiceWorker đăng ký thất bại:', error); });
       });
     }
   </script>
